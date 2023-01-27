@@ -1,0 +1,6 @@
+<div class="container">
+  <app-company-item
+    *ngFor="let c of companies$ | async"
+    [company]="c"
+  ></app-company-item>
+</div>
