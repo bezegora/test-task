@@ -1,0 +1,17 @@
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+  <label>Логин</label>
+  <br />
+  <input class="form-control" name="login" formControlName="userLogin" />
+  <br />
+  <label>Пароль</label>
+  <br />
+  <input
+    class="form-control"
+    name="password"
+    formControlName="userPassword"
+    type="password"
+  />
+  <br />
+  <br />
+  <button class="btn btn-default">Отправить</button>
+</form>

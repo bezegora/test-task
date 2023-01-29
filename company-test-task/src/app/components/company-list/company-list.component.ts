@@ -1,4 +1,5 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CompanyModel } from 'src/app/models/company.model';
 import { CompaniesService } from 'src/app/services/companies.service';
@@ -8,10 +9,21 @@ import { CompaniesService } from 'src/app/services/companies.service';
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.scss']
 })
-export class CompanyListComponent implements OnInit
-// , AfterContentInit
-{
+export class CompanyListComponent implements OnInit {
+
+  public sortingThings = [
+    '',
+    'Наименованию',
+    'Типу',
+    'Виду деятельности'
+  ]
+
+  myForm = new FormGroup({
+    sortBy: new FormControl<string>('')
+  });
+
   public companies$!: Observable<CompanyModel[]>;
+
   constructor(
     private compService: CompaniesService,
   ) { }
@@ -19,8 +31,7 @@ export class CompanyListComponent implements OnInit
   ngOnInit(): void {
     this.companies$ = this.compService.get()
   }
-  // ngAfterContentInit(): void {
-  //   let companies: CompanyModel[] = [];
-  //   localStorage.setItem('companies', JSON.stringify(companies))
-  // }
+
+
+
 }

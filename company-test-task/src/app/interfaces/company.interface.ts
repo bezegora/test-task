@@ -15,4 +15,5 @@ export interface ICompany {
   suffix: string
   type: string
   uid: string
+  russian?: boolean
 }

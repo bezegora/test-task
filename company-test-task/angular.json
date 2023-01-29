@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "company-test-task"
+  "cli": {
+    "analytics": "8ed77162-5f0c-4ea3-961e-bce49ad8db67"
+  }
 }

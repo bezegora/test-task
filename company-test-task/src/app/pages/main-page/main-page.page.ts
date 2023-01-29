@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { CompaniesService } from 'src/app/services/companies.service';
 
@@ -9,13 +10,21 @@ import { CompaniesService } from 'src/app/services/companies.service';
 export class MainPage implements OnInit {
 
   constructor(
-    private compService: CompaniesService
+    private compService: CompaniesService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
-    console.log(this.compService.get().pipe(map((value => { console.log(value); return value }
-    ))).subscribe());
-    
+  }
+
+  public toLogin() {
+    localStorage.setItem('isLogged', 'false')
+    this._router.navigate(['/login'])
+  }
+
+  public toAddCompany() {
+    this._router.navigate(['/companies/add-company'])
+
   }
 
 }

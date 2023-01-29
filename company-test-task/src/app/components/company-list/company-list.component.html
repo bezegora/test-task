@@ -1,6 +1,16 @@
 <div class="container">
+  <form [formGroup]="myForm">
+    <label>Сортировать по </label>
+    <select formControlName="sortBy">
+      <option *ngFor="let thing of sortingThings" [ngValue]="thing">
+        {{ thing }}
+      </option>
+    </select>
+  </form>
+</div>
+<div class="container">
   <app-company-item
-    *ngFor="let c of companies$ | async"
+    *ngFor="let c of companies$ | async | filter : myForm.controls.sortBy.value"
     [company]="c"
   ></app-company-item>
 </div>

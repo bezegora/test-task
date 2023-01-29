@@ -17,6 +17,7 @@ export class CompanyModel {
   suffix: string
   type: string
   uid: string
+  Russian: boolean
 
   constructor(comp: ICompany) {
     this.bs_company_statement = comp.bs_company_statement;
@@ -35,5 +36,7 @@ export class CompanyModel {
     this.suffix = comp.suffix;
     this.type = comp.type;
     this.uid = comp.uid;
+    this.Russian = comp.russian ? comp.russian : false;
+
   }
 }

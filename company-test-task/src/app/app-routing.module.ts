@@ -6,17 +6,21 @@ import { MainPage } from './pages/main-page/main-page.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'companies',
+    redirectTo: 'login',
     pathMatch: 'full'
-  },
-  {
-    path: 'companies',
-    component: MainPage,
-    canActivate: [LoginGuard]
   },
   {
     path: 'company',
     loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule),
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
+  },
+  {
+    path: 'companies',
+    loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPageModule),
     canActivate: [LoginGuard]
   }
 ];

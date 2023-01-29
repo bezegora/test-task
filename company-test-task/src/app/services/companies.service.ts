@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CompanyModel } from '../models/company.model';
-import { ICompany } from '../interfaces/company.interface';
 import { map, of } from 'rxjs';
 
 @Injectable({
@@ -10,8 +9,8 @@ import { map, of } from 'rxjs';
 export class CompaniesService {
   private _mockCompanies!: CompanyModel[];
 
-  public getCompanyById(id: number): ICompany {
-    const findedComp: CompanyModel | undefined = JSON.parse(localStorage.getItem('companies') || '{}').find((c: CompanyModel) => c.id === id);
+  public getCompanyById(id: number): CompanyModel {
+    const findedComp: CompanyModel = JSON.parse(localStorage.getItem('companies') || '{}').find((c: CompanyModel) => c.id === id);
     if (findedComp === undefined || findedComp === null) {
       throw new TypeError();
     }
@@ -29,5 +28,9 @@ export class CompaniesService {
         return value;
       }))
       : of(JSON.parse(localStorage.getItem('companies') || '{}'));
+  }
+
+  public getOneRandomCompany() {
+    return this._hhtpClient.get<CompanyModel>('https://random-data-api.com/api/company/random_company')
   }
 }

@@ -1,3 +1,4 @@
+<button (click)="onBack()">&leftarrow; back</button>
 <div>
   <img src="{{company.logo}}" alt="logo" />
   <h1>{{company.business_name}}</h1>
@@ -5,4 +6,5 @@
   <p>Слоган: {{company.catch_phrase}}</p>
   <p>Номер телефона: {{company.duns_number}}</p>
   <p>Адрес: {{company.full_address}}</p>
+  <p>Присутствует на российском рынке: {{company.Russian ? 'Да' : 'Нет'}}</p>
 </div>

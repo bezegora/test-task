@@ -1,1 +1,18 @@
-<p>add-company works!</p>
+<button (click)="onBack()">&leftarrow; back</button>
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+  <label>Название</label>
+  <br />
+  <input type="text" name="name" formControlName="business_name" />
+  <br />
+  <label>Вид деятельности</label>
+  <br />
+  <select formControlName="industry">
+    <option *ngFor="let value of values" [ngValue]="value">{{value}}</option>
+  </select>
+  <br />
+  <label>На российском рынке</label>
+  <input type="checkbox" name="russian" formControlName="russian" />
+  <br />
+  <br />
+  <button>Отправить</button>
+</form>
