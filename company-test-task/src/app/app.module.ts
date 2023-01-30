@@ -8,13 +8,15 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 // import { MainPage } from './pages/main-page/main-page.page';
 // import { AddCompanyPage } from './pages/add-company/add-company.page';
 import { HttpClientModule } from '@angular/common/http';
-import { FilterPipe } from './pipes/filter.pipe';
+// import { FilterPipe } from './pipes/filter.pipe';
+// import { MapComponent } from './components/map/map.component';
 // import { CompanyPage } from './pages/company/company.page';
 // import { LoginPage } from './pages/login/login.page';
 
 @NgModule({
   declarations: [
     AppComponent,
+    // MapComponent,
     // FilterPipe,
     // CompanyItemComponent,
     // CompanyListComponent,

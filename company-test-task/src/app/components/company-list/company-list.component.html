@@ -8,7 +8,7 @@
     </select>
   </form>
 </div>
-<div class="container">
+<div class="container container-list">
   <app-company-item
     *ngFor="let c of companies$ | async | filter : myForm.controls.sortBy.value"
     [company]="c"

@@ -21,7 +21,7 @@ export class CompaniesService {
     private _hhtpClient: HttpClient,
   ) { }
 
-  public get() {
+  public getObservableCompanies() {
     return !localStorage.getItem('companies')
       ? this._hhtpClient.get<CompanyModel[]>('https://random-data-api.com/api/company/random_company?size=20').pipe(map(value => {
         localStorage.setItem('companies', JSON.stringify(value));
@@ -32,5 +32,13 @@ export class CompaniesService {
 
   public getOneRandomCompany() {
     return this._hhtpClient.get<CompanyModel>('https://random-data-api.com/api/company/random_company')
+  }
+
+  public getRandomCompanies() {
+    return this._hhtpClient.get<CompanyModel[]>('https://random-data-api.com/api/company/random_company?size=20');
+  }
+
+  public getListOfCompanies(): CompanyModel[] {
+    return JSON.parse(localStorage.getItem('companies')!);
   }
 }

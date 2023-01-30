@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { fromEvent, interval, map, Observable, tap, throttleTime } from 'rxjs';
 import { CompanyModel } from 'src/app/models/company.model';
 import { CompaniesService } from 'src/app/services/companies.service';
+import { CompanyItemComponent } from '../company-item/company-item.component';
 
 @Component({
   selector: 'app-company-list',
@@ -25,11 +26,28 @@ export class CompanyListComponent implements OnInit {
   public companies$!: Observable<CompanyModel[]>;
 
   constructor(
-    private compService: CompaniesService,
+    private _compService: CompaniesService,
+    private _viewContainerRef: ViewContainerRef,
   ) { }
 
   ngOnInit(): void {
-    this.companies$ = this.compService.get()
+    let scroll = fromEvent(document, 'scroll').pipe(
+      throttleTime(300),
+      tap((e: Event) => {
+        if (document.documentElement.getBoundingClientRect().bottom <= document.documentElement.clientHeight + 1000) {
+          this._compService.getRandomCompanies().pipe(
+            map((value) => {
+              value.forEach(company => {
+                let test = this._viewContainerRef.createComponent(CompanyItemComponent);
+                test.setInput('company', company);
+              });
+              localStorage.setItem('companies', JSON.stringify(this._compService.getListOfCompanies().concat(value)));
+            })
+          ).subscribe();
+        }
+      })
+    ).subscribe();
+    this.companies$ = this._compService.getObservableCompanies()
   }
 
 

@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainPage,
     CompanyItemComponent,
     CompanyListComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     CommonModule,

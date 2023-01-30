@@ -7,4 +7,5 @@
   <p>Номер телефона: {{company.duns_number}}</p>
   <p>Адрес: {{company.full_address}}</p>
   <p>Присутствует на российском рынке: {{company.Russian ? 'Да' : 'Нет'}}</p>
+  <app-map [coords]="{lon: company.longitude, lat: company.latitude}"></app-map>
 </div>
