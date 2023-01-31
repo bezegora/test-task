@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CompanyModel } from 'src/app/models/company.model';
-import { CompaniesService } from 'src/app/services/companies.service';
+
+import { CompanyModel } from '../../models/company.model';
+import { CompaniesService } from '../../services/companies.service';
 
 @Component({
   templateUrl: './add-company.page.html',
@@ -33,20 +34,13 @@ export class AddCompanyPage implements OnInit {
   }
 
   public submit() {
-    let companies: CompanyModel[] = JSON.parse(localStorage.getItem('companies') || '{}');
-    // companies.push(new CompanyModel({
-
-    // }))
-    // сервисом вызвать одну рандомную компанию, переписать некоторые значения
-    // let newCompany: CompanyModel;
     this._compService.getOneRandomCompany().forEach(value => {
       let newCompany = value;
       newCompany.business_name = this.myForm.controls.business_name.value!;
       newCompany.industry = this.myForm.controls.industry.value!;
-      newCompany.Russian = this.myForm.controls.russian.value!;
-      companies.push(newCompany);
+      newCompany.russian = this.myForm.controls.russian.value!;
       console.log(newCompany);
-      localStorage.setItem('companies', JSON.stringify(companies));
+      this._compService.addCompanies([newCompany]);
       this._router.navigate(['/companies']);
     });
   }

@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompanyPage } from './company.page';
-import { RouterModule, Routes } from '@angular/router';
-import { MapComponent } from 'src/app/components/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MarkerService } from 'src/app/services/marker.service';
-// import { GoogleMapsModule } from '@angular/google-maps';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { MapComponent } from '../../components/map/map.component';
+import { MarkerService } from '../../services/marker.service';
+import { CompanyPage } from './company.page';
 
 const routes: Routes = [
   {

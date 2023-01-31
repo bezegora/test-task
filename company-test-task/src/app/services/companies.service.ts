@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CompanyModel } from '../models/company.model';
+import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { CompanyModel } from '../models/company.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompaniesService {
+
   private _mockCompanies!: CompanyModel[];
 
   public getCompanyById(id: number): CompanyModel {
-    const findedComp: CompanyModel = JSON.parse(localStorage.getItem('companies') || '{}').find((c: CompanyModel) => c.id === id);
+    const findedComp: CompanyModel = (this._mockCompanies || {}).find((c: CompanyModel) => c.id === id)!;
     if (findedComp === undefined || findedComp === null) {
       throw new TypeError();
     }
@@ -22,23 +25,31 @@ export class CompaniesService {
   ) { }
 
   public getObservableCompanies() {
-    return !localStorage.getItem('companies')
-      ? this._hhtpClient.get<CompanyModel[]>('https://random-data-api.com/api/company/random_company?size=20').pipe(map(value => {
-        localStorage.setItem('companies', JSON.stringify(value));
+    return !this._mockCompanies
+      ? this._hhtpClient.get<CompanyModel[]>(environment.APIurl + '?size=20').pipe(map(value => {
+        this._mockCompanies = value;
         return value;
       }))
-      : of(JSON.parse(localStorage.getItem('companies') || '{}'));
+      : of((this._mockCompanies || {}));
   }
 
   public getOneRandomCompany() {
-    return this._hhtpClient.get<CompanyModel>('https://random-data-api.com/api/company/random_company')
+    return this._hhtpClient.get<CompanyModel>(environment.APIurl);
   }
 
   public getRandomCompanies() {
-    return this._hhtpClient.get<CompanyModel[]>('https://random-data-api.com/api/company/random_company?size=20');
+    return this._hhtpClient.get<CompanyModel[]>(environment.APIurl + '?size=20');
   }
 
   public getListOfCompanies(): CompanyModel[] {
-    return JSON.parse(localStorage.getItem('companies')!);
+    return this._mockCompanies || {};
+  }
+
+  public setCompanies(companies: CompanyModel[]) {
+    this._mockCompanies = companies;
+  }
+
+  public addCompanies(value: CompanyModel[]) {
+    this._mockCompanies = this._mockCompanies.concat(value);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CompanyModel } from 'src/app/models/company.model';
+
+import { CompanyModel } from '../../models/company.model';
 
 @Component({
   selector: 'app-company-item',

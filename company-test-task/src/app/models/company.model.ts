@@ -1,4 +1,4 @@
-import { ICompany } from "../interfaces/company.interface"
+import { ICompany } from '../interfaces/company.interface';
 
 export class CompanyModel {
   bs_company_statement: string
@@ -17,7 +17,7 @@ export class CompanyModel {
   suffix: string
   type: string
   uid: string
-  Russian: boolean
+  russian: boolean
 
   constructor(comp: ICompany) {
     this.bs_company_statement = comp.bs_company_statement;
@@ -36,7 +36,7 @@ export class CompanyModel {
     this.suffix = comp.suffix;
     this.type = comp.type;
     this.uid = comp.uid;
-    this.Russian = comp.russian ? comp.russian : false;
+    this.russian = comp.russian ? comp.russian : false;
 
   }
 }

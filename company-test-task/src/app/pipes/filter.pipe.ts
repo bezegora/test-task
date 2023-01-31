@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 import { CompanyModel } from '../models/company.model';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  //сортировки списка по названию, виду деятельности и типу
-
   transform(value: CompanyModel[] | null, sortingThing: string | null): CompanyModel[] | null {
     if (!value) {
       return value;

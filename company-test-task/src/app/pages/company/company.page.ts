@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { catchError, map, Observable, of } from 'rxjs';
-import { CompanyModel } from 'src/app/models/company.model';
-import { CompaniesService } from 'src/app/services/companies.service';
+
+import { CompanyModel } from '../../models/company.model';
+import { CompaniesService } from '../../services/companies.service';
 
 @Component({
   selector: 'app-company',
@@ -12,26 +11,16 @@ import { CompaniesService } from 'src/app/services/companies.service';
 })
 export class CompanyPage implements OnInit {
   public company!: CompanyModel;
-  // apiLoaded: Observable<boolean>;
-
   constructor(
     private _route: ActivatedRoute,
     private _compService: CompaniesService,
-    private _httpClient: HttpClient,
     private _router: Router
-  ) {
-    // this.apiLoaded = _httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE', 'callback')
-    //   .pipe(
-    //     map(() => true),
-    //     catchError(() => of(false)),
-    //   );
-  }
+  ) { }
 
   ngOnInit(): void {
     this._route.params
       .subscribe((params: Params) => {
         this.company = this._compService.getCompanyById(+params['id']);
-        // console.log(this.company);
       })
       .unsubscribe();
   }

@@ -1,10 +1,8 @@
-import { ApplicationRef, Component, ComponentFactoryResolver, HostListener, Injector, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
-import { CompanyItemComponent } from 'src/app/components/company-item/company-item.component';
-import { CompanyModel } from 'src/app/models/company.model';
-import { CompaniesService } from 'src/app/services/companies.service';
-import { WindowScrollService } from 'src/app/services/window-scroll.service';
+import { Observable } from 'rxjs';
+
+import { LoginService } from '../../services/login.service';
 
 
 
@@ -14,46 +12,21 @@ import { WindowScrollService } from 'src/app/services/window-scroll.service';
 })
 export class MainPage implements OnInit {
   scrollY$!: Observable<number>;
-
-  // @HostListener('document:scroll', ['$event'])
-  // onScroll(e: Event): void {
-  //   // console.log(this.getYPosition(e));
-  //   if (document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight + 100) {
-  //     let newNode = document.createElement('div');
-  //     newNode.id = 'new-companies';
-  //     document.body.querySelector('div.container-list')?.append(newNode);
-  //     this._compService.getRandomCompanies().pipe(
-  //       map((value) => {
-  //         value.forEach(company => {
-  //           let test = this._viewContainerRef.createComponent(CompanyItemComponent, { });
-  //           test.setInput('company', company);
-
-  //         });
-  //         // localStorage.setItem('companies', JSON.stringify(this._compService.getListOfCompanies().concat(value)));
-  //       })
-  //     ).subscribe();
-  //   }
-  // }
-
   constructor(
     private _router: Router,
-    private _windowScrollService: WindowScrollService,
+    private _loginService: LoginService
   ) {
-    this.scrollY$ = this._windowScrollService.scrollY$;
   }
 
-  ngOnInit(): void {
-    // window.addEventListener('scroll', this.getYPosition, true);
-    // this.populate();
-  }
+  ngOnInit(): void { }
 
   public toLogin() {
-    localStorage.setItem('isLogged', 'false')
-    this._router.navigate(['/login'])
+    this._loginService.logOff();
+    this._router.navigate(['/login']);
   }
 
   public toAddCompany() {
-    this._router.navigate(['/companies/add-company'])
+    this._router.navigate(['/companies/add-company']);
   }
 
   public getYPosition(e: Event) {

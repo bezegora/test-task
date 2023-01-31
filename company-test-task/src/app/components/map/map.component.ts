@@ -1,6 +1,8 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import * as L from 'leaflet';
-import { MarkerService } from 'src/app/services/marker.service';
+
+import { environment } from '../../../environments/environment';
+import { MarkerService } from '../../services/marker.service';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -37,7 +39,7 @@ export class MapComponent implements AfterViewInit {
       zoom: 3
     });
 
-    const tiles = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+    const tiles = L.tileLayer(environment.urlTemplate, {
       maxZoom: 18,
       minZoom: 1,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

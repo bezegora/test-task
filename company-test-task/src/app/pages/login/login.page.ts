@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -15,25 +16,17 @@ export class LoginPage implements OnInit {
   });
 
   constructor(
-    private _router: Router
+    private _loginService: LoginService,
   ) {
-    localStorage.setItem('login', 'admin');
-    localStorage.setItem('password', 'admin');
+    this._loginService.setDefaultCredentials();
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('isLogged') == 'true') {
-      this._router.navigate(['/companies'])
-    }
-
+    this._loginService.checkIfAlreadyLoggedIn();
   }
 
-  submit() {
-    if (this.myForm.controls['userLogin'].value == localStorage.getItem('login') &&
-      this.myForm.controls['userPassword'].value == localStorage.getItem('password')) {
-      localStorage.setItem('isLogged', 'true');
-      this._router.navigate(['/companies']);
-    }
+  onSubmit() {
+    this._loginService.checkCredentials(this.myForm.controls['userLogin'].value, this.myForm.controls['userPassword'].value);
   }
 
 }

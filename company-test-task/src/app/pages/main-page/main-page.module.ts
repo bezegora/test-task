@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CompanyItemComponent } from '../../components/company-item/company-item.component';
+import { CompanyListComponent } from '../../components/company-list/company-list.component';
+import { FilterPipe } from '../../pipes/filter.pipe';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { MainPage } from './main-page.page';
-import { CompanyItemComponent } from 'src/app/components/company-item/company-item.component';
-import { CompanyListComponent } from 'src/app/components/company-list/company-list.component';
-import { FilterPipe } from 'src/app/pipes/filter.pipe';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
