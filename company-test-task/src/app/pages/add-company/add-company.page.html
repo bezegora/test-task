@@ -1,18 +1,30 @@
-<button (click)="onBack()">&leftarrow; back</button>
-<form [formGroup]="myForm" (ngSubmit)="submit()">
-  <label>Название</label>
-  <br />
-  <input type="text" name="name" formControlName="business_name" />
-  <br />
-  <label>Вид деятельности</label>
-  <br />
-  <select formControlName="industry">
-    <option *ngFor="let value of values" [ngValue]="value">{{value}}</option>
-  </select>
-  <br />
-  <label>На российском рынке</label>
-  <input type="checkbox" name="russian" formControlName="russian" />
-  <br />
-  <br />
-  <button>Отправить</button>
-</form>
+<button (click)="onBack()" class="back-button">&leftarrow; back</button>
+<div class="center">
+  <h1>ADD CARD</h1>
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <div class="inputbox">
+      <input type="text" name="name" formControlName="business_name" />
+      <label>Name</label>
+    </div>
+    <div class="inputbox">
+      <select formControlName="industry">
+        <option *ngFor="let value of values" [ngValue]="value">
+          {{value}}
+        </option>
+      </select>
+      <label>Industry</label>
+    </div>
+    <div class="inputbox">
+      <label>On russian market</label>
+      <input
+        type="checkbox"
+        name="russian"
+        class="checkbox"
+        formControlName="russian"
+      />
+    </div>
+    <div class="inputbox">
+      <button class="button">Send</button>
+    </div>
+  </form>
+</div>

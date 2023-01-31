@@ -1,6 +1,45 @@
-input.ng-touched.ng-invalid {
-  border: solid red 2px;
+.center {
+  padding: 50px 50px;
+  background: #fff;
+  align-content: center;
+  position: relative;
+  width: fit-content;
+  margin: auto;
 }
-input.ng-touched.ng-valid {
-  border: solid green 2px;
+h1 {
+  font-size: 2em;
+  border-bottom: 5px solid antiquewhite;
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.inputbox {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+input,
+button {
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+.inputbox:last-child {
+  margin-bottom: 0;
+}
+button {
+  width: 50%;
+  background: gray;
+  color: #fff;
+  border: #fff;
 }

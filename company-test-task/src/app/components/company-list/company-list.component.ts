@@ -31,9 +31,9 @@ export class CompanyListComponent implements OnInit {
 
   ngOnInit(): void {
     fromEvent(document, 'scroll').pipe(
-      throttleTime(300),
+      throttleTime(500),
       tap((e: Event) => {
-        if (document.documentElement.getBoundingClientRect().bottom <= document.documentElement.clientHeight + 1000) {
+        if (document.documentElement.getBoundingClientRect().bottom <= document.documentElement.clientHeight + 500) {
           this._compService.getRandomCompanies().pipe(
             map((value) => {
               this._compService.addCompanies(value);

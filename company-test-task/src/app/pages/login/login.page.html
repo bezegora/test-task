@@ -1,17 +1,26 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <label>Логин: admin</label>
-  <br />
-  <input class="form-control" name="login" formControlName="userLogin" />
-  <br />
-  <label>Пароль: admin</label>
-  <br />
-  <input
-    class="form-control"
-    name="password"
-    formControlName="userPassword"
-    type="password"
-  />
-  <br />
-  <br />
-  <button class="btn btn-default">Отправить</button>
-</form>
+<div class="center">
+  <h1>LOGIN</h1>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="inputbox">
+      <input
+        class="form-control"
+        formControlName="userLogin"
+        type="text"
+        required="required"
+      />
+      <label>Login: admin</label>
+    </div>
+    <div class="inputbox">
+      <input
+        class="form-control"
+        formControlName="userPassword"
+        type="password"
+        required="required"
+      />
+      <label>Password: admin</label>
+    </div>
+    <div class="inputbox">
+      <button class="button">Send</button>
+    </div>
+  </form>
+</div>

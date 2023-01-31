@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CompanyModel } from '../../models/company.model';
 import { CompaniesService } from '../../services/companies.service';
 
 @Component({
@@ -11,11 +10,11 @@ import { CompaniesService } from '../../services/companies.service';
 })
 export class AddCompanyPage implements OnInit {
   public values = [
-    'лесоводство и лесозаготовки',
-    'добыча угля',
-    'производство мебели',
-    'научные исследования и разработки',
-    'деятельность общественных организаций'
+    'Лесоводство и лесозаготовки',
+    'Добыча угля',
+    'Производство мебели',
+    'Научные исследования и разработки',
+    'Деятельность общественных организаций'
   ];
 
   myForm = new FormGroup({

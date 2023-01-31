@@ -1,11 +1,19 @@
 <button (click)="onBack()">&leftarrow; back</button>
-<div>
+<div class="company">
   <img src="{{company.logo}}" alt="logo" />
-  <h1>{{company.business_name}}</h1>
-  <p>Вид деятельности: {{company.industry}}</p>
-  <p>Слоган: {{company.catch_phrase}}</p>
-  <p>Номер телефона: {{company.duns_number}}</p>
-  <p>Адрес: {{company.full_address}}</p>
-  <p>Присутствует на российском рынке: {{company.russian ? 'Да' : 'Нет'}}</p>
-  <app-map [coords]="{lon: company.longitude, lat: company.latitude}"></app-map>
+  <div class="info">
+    <div class="text">
+      <h1>{{company.business_name}}</h1>
+      <p>Вид деятельности: {{company.industry}}</p>
+      <p>Слоган: {{company.catch_phrase}}</p>
+      <p>Номер телефона: {{company.duns_number}}</p>
+      <p>Адрес: {{company.full_address}}</p>
+      <p>
+        Присутствует на российском рынке: {{company.russian ? 'Да' : 'Нет'}}
+      </p>
+    </div>
+    <app-map
+      [coords]="{lon: company.longitude, lat: company.latitude}"
+    ></app-map>
+  </div>
 </div>
